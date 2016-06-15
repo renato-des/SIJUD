@@ -6,12 +6,7 @@
 package br.com.sijud.dao;
 
 import br.com.sijud.model.Pessoa;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Ignore;
 
 /**
@@ -26,24 +21,29 @@ public class PessoaDaoTest {
         Pessoa pessoa = new Pessoa();
         pessoa.setFirstName("Renato");
         pessoa.setLastName("vieira");
-        pessoa.setEmail("renatotpvieira@gmail.com");
+        pessoa.setEmail("renato.vieira@gmail.com");
         pessoa.setCpf("16204283855");
 
         PessoaDao pessoaDao = new PessoaDao();
         pessoaDao.salvar(pessoa);
 
     }
-    
+
     @Test
-    public void testLocalizaEmail(){
-    
+    //@Ignore
+    public void testLocalizaEmail() {
+        String email = "renatotpvieira@gmail.com";
         //Pessoa pessoa = new Pessoa();
         //pessoa.setEmail("renatotpvieira@gmail.com");
-
         PessoaDao pessoaDao = new PessoaDao();
-        Pessoa pessoa = pessoaDao.buscarPessoaEmail("renatotpvieira@gmail.com");
-        System.out.println("Pessoa localizada id " + pessoa.getId() + " - " + pessoa.getEmail() );
-         
+        //if (pessoaDao.existPorCampo("email", email)) {
+        if(pessoaDao.buscarPorCampo("email", email)!=null){ 
+            Pessoa pessoa = pessoaDao.buscarPorCampo("email", email);
+            System.out.println("Pessoa localizada id " + pessoa.getId() + " - " + pessoa.getEmail());
+       } else {
+            System.out.println("Não localizado Pessoa com email : " + email);
+       }
+
     }
 
 }
