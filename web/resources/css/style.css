@@ -1,0 +1,140 @@
+html {
+    background-image: url("#{resource['images/background-html.png']}");
+}
+
+body {
+    background-color: transparent !important;   
+    padding-top: 10px;
+}
+.img-centro{
+    width: 567px;
+    height: 476px;
+    margin:0 auto;
+    background:  url("#{resource['images/sijud-logo.png']}") no-repeat scroll 0 0 transparent;
+}
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+
+/* Nav Bar*/
+
+#menu-sup.navbar .navbar-brand {
+    color: rgba(255, 255, 255, 1);
+}
+
+#menu-sup.navbar {
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: rgba(0, 88, 153, 1);
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+#menu-sup.navbar .navbar-nav>li>a {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 88, 153, 1);
+}
+
+#menu-sup.navbar .navbar-nav>li>a:hover,
+#menu-sup.navbar .navbar-nav>li>a:focus {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(248, 89, 0, 1);
+}
+
+#menu-sup.navbar .navbar-nav>.active>a,
+#menu-sup.navbar .navbar-nav>.active>a:hover,
+#menu-sup.navbar .navbar-nav>.active>a:focus {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 1);
+}
+
+#menu-sup.navbar .navbar-toggle {
+
+}
+
+#menu-sup.navbar .navbar-toggle:hover,
+#menu-sup.navbar .navbar-toggle:focus {
+
+}
+
+#menu-sup.navbar .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+#menu-sup.navbar .navbar-toggle:hover .icon-bar,
+#menu-sup.navbar .navbar-toggle:focus .icon-bar {
+    background-color: orangered;
+}
+
+#menu-sup.navbar .dropdown-menu {
+    font-size: 1em;
+    background-color: rgba(0, 88, 153, 1) !important;
+    color: #fff;
+}
+
+#menu-sup.navbar .dropdown-menu > li > a {
+    clear: both;
+    color: #fff;
+    display: block;
+    font-weight: normal;
+    line-height: 1.42857;
+    padding: 3px 20px;
+    white-space: nowrap;
+    text-align: left;
+}
+
+#menu-sup.navbar .login {
+    color: #fff !important;
+    border: 0.5px solid;
+}
+#main .page-header{
+    margin-top: 45px !important;
+}
+.form-cad .form-group {
+    margin-bottom: 3px !important;
+}
+.form-cad {
+    padding-top:48px !important;
+    padding-bottom:48px !important;   
+}
+.form-cad .panel-title {	
+    font-weight: bold !important; 
+    font-size: 20px !important; 
+}
+
+.form-cad .panel-body {	
+    padding-top: 0px !important; 
+}
+
+/* Footer */
+
+.container .text-muted {
+    margin: 20px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Footer */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

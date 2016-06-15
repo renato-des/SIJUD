@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://java.sun.com/jsf/passthrough">
+    <ui:composition>
+        <!--     menu-sup-->
+        <div id="menu-sup" class="navbar " role="navigation">        
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class=" pull-left" rel="home" href="#{request.contextPath}">
+                    <img src="#{request.contextPath}/resources/images/sijud-logo_57x48.png" alt="SIJUD" class="" style="width:48px;" />
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">DEMANDA <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="#" class="btn btn-lg"><span class="glyphicon glyphicon-search"></span> CONSULTAR</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#{request.contextPath}/pages/cad_demanda.xhtml"><i class="fa fa-plus-square"></i> NOVA</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="fa fa-minus-square" aria-hidden="true"></i> CANCELAR</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="btn btn-lg"><span class="glyphicon glyphicon-log-out"></span> SAIR</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#{request.contextPath}/pages/painel.xhtml">PAINEL</a></li>
+                    <li><a href="#{request.contextPath}/pages/relatorios.xhtml">RELATÓRIOS</a></li>
+                </ul>
+                <div class="col-sm-3 col-md-3 pull-right">
+                    <div class="pull-right">
+                        <a href="#{request.contextPath}/pages/login.xhtml" class="btn btn-lg login"><span class="glyphicon glyphicon-user"></span> LOGIN</a>
+                    </div>
+                </div>
+
+            </div>      
+        </div>
+        <!--     menu-sup-->
+    </ui:composition>
+</html>
+
