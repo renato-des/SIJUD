@@ -5,12 +5,15 @@
  */
 package br.com.sijud.model;
 
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -23,11 +26,9 @@ import javax.validation.constraints.Size;
 @SuppressWarnings("serial")
 public class Usuario extends GenericModel {
 
-   
-    
-    @ManyToOne
+    @OneToOne
     @JoinColumn(nullable = false)
-     private Pessoa pessoa;
+    private Pessoa pessoa;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -39,8 +40,20 @@ public class Usuario extends GenericModel {
     @Size(min = 1, max = 255)
     @Column(name = "login")
     private String login;
-    
-    @Column(name = "active",nullable = false,columnDefinition = "Boolean default true")
+
+    public Date getUltimoAcesso() {
+        return ultimoAcesso;
+    }
+
+    public void setUltimoAcesso(Date ultimoAcesso) {
+        this.ultimoAcesso = ultimoAcesso;
+    }
+
+    @Column(name = "lastAccess", unique = true)
+    @Temporal(TemporalType.DATE)
+    private Date ultimoAcesso;
+
+    @Column(name = "active", nullable = false, columnDefinition = "Boolean default true")
     private Boolean active;
 
     public Usuario() {

@@ -1,68 +1,73 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:p="http://primefaces.org/ui"
+                 template="/template/layout.xhtml">
 
-    <ui:composition  template="/template/layout.xhtml">
-        <ui:define name="content">
-            <div class="container">
-                <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-4 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <div class="panel-title">Efetuar Login</div>
-                            <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Recuperar senha?</a></div>
-                        </div>
-                        <div style="padding-top:30px" class="panel-body">
-                            <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            <h:form id="loginform" class="form-horizontal" role="form" >
-                                <div style="margin-bottom: 25px" class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    
-                                    <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Email ou Usuário" required="required" pt:autofocus="true" />
+    <ui:define name="content">
+        <div class="container">
+
+            <div id="loginbox" style="" class="mainbox col-md-4 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">Efetuar Login</div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Recuperar senha?</a></div>
+                    </div>
+                    <div style="padding-top:30px" class="panel-body">
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                        <h:form id="loginform" class="form-horizontal" role="form" >
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+                                <input id="login-username" type="text" class="form-control" name="username" value="#{autenticacaoBean.usuario.pessoa.email}" placeholder="Email ou Usuário" required="required" pt:autofocus="true" />
+                            </div>
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+
+                                <input id="login-password" type="password" class="form-control" name="password" value="#{autenticacaoBean.usuario.pwd}" placeholder="Senha" required="required" />
+                            </div>
+                            <div class="input-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="login-remember" type="checkbox" name="remember" value="1" /> Lembrar Meu ID de Usuário
+                                    </label>
                                 </div>
-                                <div style="margin-bottom: 25px" class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    
-                                    <input id="login-password" type="password" class="form-control" name="password" placeholder="Senha" required="required" />
+                            </div>
+                            <div style="margin-top:10px" class="form-group">
+                                <div class="col-sm-12 controls">
+                                    <!--<a id="btn-login" href="#" class="btn btn-success">Login  </a>-->
+                                    <h:commandButton actionListener="#{autenticacaoBean.autenticar()}" styleClass="btn btn-success" value="Entrar" />
+                                    <!--                                        <button class="btn btn-success" type="submit">Login</button>-->
+                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
                                 </div>
-                                <div class="input-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input id="login-remember" type="checkbox" name="remember" value="1" /> Lembrar Meu ID de Usuário
-                                        </label>
+                            </div>
+                        </h:form>
+                        <h:form>
+                            <div class="form-group">
+                                <div class="col-md-12 control">
+                                    <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                        Novo usuário!
+                                        <!--                                            <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Clique aqui para cadastrar-se</a>-->
+                                        <!--                                            <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Clique aqui para cadastrar-se</a>-->
+                                        <h:commandLink value="Clique aqui para cadastrar-se" actionListener="#{autenticacaoBean.redireciona('/pages/cad-user')}" />
+
                                     </div>
                                 </div>
-                                <div style="margin-top:10px" class="form-group">
-                                    <div class="col-sm-12 controls">
-                                        <!--<a id="btn-login" href="#" class="btn btn-success">Login  </a>-->
-                                        <button class="btn btn-success" type="submit">Login</button>
-                                        <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12 control">
-                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                            Novo usuário!
-                                            <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Clique aqui para cadastrar-se</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </h:form>
-                        </div>
+                            </div>
+                        </h:form>
                     </div>
                 </div>
-                <!-- Cadastro -->
-                <ui:include src="cad-user.xhtml" />
-                <!-- Cadastro -->
-                
+            </div>
+            <!-- Cadastro -->
+            <!--                <ui:include src="cad-user.xhtml" />-->
+            <!-- Cadastro -->
+
         </div>
 
-               
-        </ui:define>
-    </ui:composition>
-</html>
 
+    </ui:define>
+</ui:composition>
