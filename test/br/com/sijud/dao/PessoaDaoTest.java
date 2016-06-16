@@ -6,6 +6,8 @@
 package br.com.sijud.dao;
 
 import br.com.sijud.model.Pessoa;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -14,6 +16,8 @@ import org.junit.Ignore;
  * @author c082401
  */
 public class PessoaDaoTest {
+
+    private static final Logger logger = LogManager.getLogger(PessoaDaoTest.class);
 
     @Test
     @Ignore
@@ -32,17 +36,23 @@ public class PessoaDaoTest {
     @Test
     //@Ignore
     public void testLocalizaEmail() {
-        String email = "renatotpvieira@gmail.com";
-        //Pessoa pessoa = new Pessoa();
+        String email = "renatotpvieira@gmail.com1";
+        Pessoa pessoa = new Pessoa();
         //pessoa.setEmail("renatotpvieira@gmail.com");
         PessoaDao pessoaDao = new PessoaDao();
-        //if (pessoaDao.existPorCampo("email", email)) {
-        if(pessoaDao.buscarPorCampo("email", email)!=null){ 
-            Pessoa pessoa = pessoaDao.buscarPorCampo("email", email);
-            System.out.println("Pessoa localizada id " + pessoa.getId() + " - " + pessoa.getEmail());
-       } else {
-            System.out.println("Não localizado Pessoa com email : " + email);
-       }
+        pessoa = pessoaDao.buscarPorCampo("email", email);
+        
+        logger.debug("Pessoa - " + pessoa);
+    
+
+ //{
+//        if(pessoaDao.buscarPorCampo("email", email)!=null){ 
+//            Pessoa pessoa = pessoaDao.buscarPorCampo("email", email);
+//            logger.debug("teste log4j2 " + email);
+//            System.out.println("Pessoa localizada id " + pessoa.getId() + " - " + pessoa.getEmail());
+//       } else {
+//            System.out.println("Não localizado Pessoa com email : " + email);
+//       }
 
     }
 

@@ -6,11 +6,6 @@
 package br.com.sijud.dao;
 
 import br.com.sijud.model.Pessoa;
-import br.com.sijud.util.HibernateUtil;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -18,23 +13,4 @@ import org.hibernate.criterion.Restrictions;
  */
 public class PessoaDao extends GenericDao<Pessoa> {
 
-    @SuppressWarnings("unchecked")
-    public Pessoa buscarPessoaEmail(String email) {
-        Session sessao = HibernateUtil.getSessionFactory().openSession();
-        try {
-            Criteria consulta = sessao.createCriteria(Pessoa.class);
-            consulta.add(Restrictions.like("email", email, MatchMode.EXACT));
-            Pessoa resultado = (Pessoa) consulta.uniqueResult();
-            if (resultado != null) {
-                return resultado;
-            } else {
-                resultado = new Pessoa();
-                return resultado;
-            }
-        } catch (RuntimeException erro) {
-            throw erro;
-        } finally {
-            sessao.close();
-        }
-    }
 }

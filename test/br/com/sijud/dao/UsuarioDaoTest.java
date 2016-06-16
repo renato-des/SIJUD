@@ -23,12 +23,12 @@ public class UsuarioDaoTest {
         pessoa.setLastName("Vieira");
 
         PessoaDao pessoaDao = new PessoaDao();
-        Pessoa pessoaFind = pessoaDao.buscarPessoaEmail(pessoa.getEmail());
+        Pessoa pessoaFind = pessoaDao.buscarPorCampo("email",pessoa.getEmail());
 
         if (pessoaFind.getId() == null) {
 
             pessoaDao.salvar(pessoa);
-            pessoaFind = pessoaDao.buscarPessoaEmail(pessoa.getEmail());
+            pessoaFind = pessoaDao.buscarPorCampo("email",pessoa.getEmail());
             Usuario usuario = new Usuario();
             usuario.setPessoa(pessoaFind);
             usuario.setLogin(pessoa.getEmail());
