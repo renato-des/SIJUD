@@ -18,11 +18,10 @@
     <!-- Echo all executed SQL to stdout -->
     <property name="show_sql">true</property>
     <!-- Drop and re-create the database schema on startup -->
-    <property name="hibernate.hbm2ddl.auto">create</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
     <!-- Classes mapeadas -->
     <mapping class="br.com.sijud.model.Demanda"/>
     <mapping class="br.com.sijud.model.Pessoa"/>
     <mapping class="br.com.sijud.model.Usuario"/>
-    
   </session-factory>
 </hibernate-configuration>
