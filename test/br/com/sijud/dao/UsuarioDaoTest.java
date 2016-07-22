@@ -7,9 +7,11 @@ package br.com.sijud.dao;
 
 import br.com.sijud.model.Pessoa;
 import br.com.sijud.model.Usuario;
+import br.com.sijud.util.HibernateUtil;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Session;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -53,6 +55,7 @@ public class UsuarioDaoTest {
     }
 
     @Test
+    @Ignore
     public void listar() {
         UsuarioDao usuarioDao = new UsuarioDao();
         List<Usuario> lista = usuarioDao.listar();
@@ -60,6 +63,14 @@ public class UsuarioDaoTest {
             System.out.println(usuarios.getId());
             System.out.println(usuarios.getLogin());
         }
+
+    }
+    
+    @Test
+    
+    public void PessoaUsuarioTest(){
+    Session sessao = HibernateUtil.getSessionFactory().openSession();
+    sessao.close();
 
     }
 }
