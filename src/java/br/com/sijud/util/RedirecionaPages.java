@@ -16,18 +16,25 @@ import javax.faces.context.FacesContext;
  */
 public class RedirecionaPages {
 
-    public static void redirectToPage(String toUrl) {
+    public static void fowardToPage(String toUrl) {
         try {
-            FacesContext ctx = FacesContext.getCurrentInstance();
-
-            ExternalContext extContext = ctx.getExternalContext();
-            String url = extContext.encodeActionURL(ctx.getApplication().
-                    getViewHandler().getActionURL(ctx, toUrl));
-
-            extContext.redirect(url);
+//            FacesContext ctx = FacesContext.getCurrentInstance();
+//            ExternalContext extContext = ctx.getExternalContext();
+//            String url = extContext.encodeActionURL(ctx.getApplication().
+//                    getViewHandler().getActionURL(ctx, toUrl));//
+//            extContext.dispatch(url);
+            FacesContext.getCurrentInstance().getExternalContext().dispatch(toUrl);
         } catch (IOException e) {
             throw new FacesException(e);
         }
     }
-    
+
+    public static void redirectToPage(String toUrl) {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(toUrl);
+        } catch (IOException e) {
+            throw new FacesException(e);
+        }
+    }
+
 }

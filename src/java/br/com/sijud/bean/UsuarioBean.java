@@ -6,7 +6,7 @@
 package br.com.sijud.bean;
 
 import br.com.sijud.dao.PessoaDao;
-import br.com.sijud.dao.UsuarioDao;
+import br.com.sijud.dao.UsuarioDAO;
 import br.com.sijud.model.Pessoa;
 import br.com.sijud.model.Usuario;
 import br.com.sijud.util.FacesUtil;
@@ -76,7 +76,7 @@ public class UsuarioBean implements Serializable {
     }
 
     public String salvarUsuario() {
-        UsuarioDao uDao = new UsuarioDao();
+        UsuarioDAO uDao = new UsuarioDAO();
 
         if (uDao.existPorCampo("login", usuario.getLogin())) {
 
@@ -110,7 +110,7 @@ public class UsuarioBean implements Serializable {
     @PostConstruct
     public void listar() {
         try {
-            UsuarioDao usuarioDao = new UsuarioDao();
+            UsuarioDAO usuarioDao = new UsuarioDAO();
             usuarios = usuarioDao.listar();
         } catch (RuntimeException erro) {
             FacesUtil.addMsgError("Ocorreu um erro ao listar os usuários");

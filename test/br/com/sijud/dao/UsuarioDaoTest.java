@@ -24,6 +24,30 @@ public class UsuarioDaoTest {
     private static final Logger logger = LogManager.getLogger(UsuarioDaoTest.class);
 
     @Test
+    public void testAutenticarUsuario() {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setEmail("renatotpvieira@gmail.com");
+        pessoa.setFirstName("Renato");
+        pessoa.setLastName("Tadeu Prado Vieira");
+
+        Usuario usuario = new Usuario();
+        usuario.setPessoa(pessoa);
+        usuario.setLogin("renatotpvieira@gmail.com");
+        usuario.setPwd("327763851");
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        if (usuarioDAO.autenticarUsuario(usuario.getLogin(), usuario.getPwd())) {
+            //System.out.println("Autenticado");
+            logger.info("Logger Autenticado");
+        } else {
+            //System.out.println("Não Autenticado");
+            logger.getLevel().getDeclaringClass();
+            logger.debug("Logger Não Autenticado");
+        }
+    }
+
+    @Test
     @Ignore
     public void testSalvarUsuario() {
         Pessoa pessoa = new Pessoa();
@@ -44,7 +68,7 @@ public class UsuarioDaoTest {
             usuario.setPwd("123456");
             usuario.setActive(true);
 
-            UsuarioDao usuarioDao = new UsuarioDao();
+            UsuarioDAO usuarioDao = new UsuarioDAO();
             usuarioDao.salvar(usuario);
 
             logger.debug("Usuário cadastrado com sucesso " + usuario.getLogin());
@@ -57,7 +81,7 @@ public class UsuarioDaoTest {
     @Test
     @Ignore
     public void listar() {
-        UsuarioDao usuarioDao = new UsuarioDao();
+        UsuarioDAO usuarioDao = new UsuarioDAO();
         List<Usuario> lista = usuarioDao.listar();
         for (Usuario usuarios : lista) {
             System.out.println(usuarios.getId());
@@ -65,12 +89,12 @@ public class UsuarioDaoTest {
         }
 
     }
-    
+
     @Test
-    
-    public void PessoaUsuarioTest(){
-    Session sessao = HibernateUtil.getSessionFactory().openSession();
-    sessao.close();
+    @Ignore
+    public void PessoaUsuarioTest() {
+        Session sessao = HibernateUtil.getSessionFactory().openSession();
+        sessao.close();
 
     }
 }

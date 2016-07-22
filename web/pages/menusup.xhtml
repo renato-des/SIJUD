@@ -44,9 +44,15 @@
                 <div class="col-sm-3 col-md-3 pull-right">
                     <div class="pull-right">
                         <!--<a href="/pages/login.xhtml" class="btn btn-lg login"><span class="glyphicon glyphicon-user"></span> LOGIN</a>-->
-                        <h:form> 
-                            <h:commandLink action="/pages/login" styleClass="btn btn-lg login" >
+                        <h:form rendered="#{session.getAttribute('usuarioLogado')==null}"> 
+                            <h:commandLink action="#{redirectBean.moveToPage('pages/login')}" styleClass="btn btn-lg login" >
                                 <span class="glyphicon glyphicon-user"></span> LOGIN
+                            </h:commandLink>
+                        </h:form>
+                        <h:form rendered="#{session.getAttribute('usuarioLogado')!=null}"> 
+                            <h:outputLabel style="color:#fff;margin-right: 3px;" value="#{session.getAttribute('usuarioLogado').getLogin()}" />
+                            <h:commandLink action="#{session.invalidate()}" styleClass="btn btn-lg login" >
+                                <span class="glyphicon glyphicon-user"></span> LOGOUT
                             </h:commandLink>
                         </h:form>
                     </div>

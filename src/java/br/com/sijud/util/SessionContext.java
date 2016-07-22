@@ -9,12 +9,18 @@ package br.com.sijud.util;
  *
  * @author renat_dvxxuhs
  */
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-
+@ManagedBean
 public class SessionContext {
 
     private static SessionContext instance;
+    
+    
+    private SessionContext() {
+
+    }
 
     public static SessionContext getInstance() {
         if (instance == null) {
@@ -24,9 +30,6 @@ public class SessionContext {
         return instance;
     }
 
-    private SessionContext() {
-
-    }
 
     private ExternalContext currentExternalContext() {
         if (FacesContext.getCurrentInstance() == null) {

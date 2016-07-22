@@ -5,17 +5,16 @@
  */
 package br.com.sijud.bean;
 
+import br.com.sijud.dao.UsuarioDAO;
 import br.com.sijud.model.Pessoa;
 import br.com.sijud.model.Usuario;
+import br.com.sijud.util.FacesUtil;
 import br.com.sijud.util.RedirecionaPages;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import br.com.sijud.util.SessionContext;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -23,24 +22,31 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @SessionScoped
-public class AutenticacaoBean {
+public class AutenticacaoBean implements Serializable {
 
     private Usuario usuario;
-    
+
     @PostConstruct
-    public void init(){
-    usuario = new Usuario();
-    usuario.setPessoa(new Pessoa());
+    public void init() {
+        usuario = new Usuario();
+        Pessoa pessoa = new Pessoa();
+        usuario.setPessoa(pessoa);
     }
 
-    public void autenticar(){
-       
-        
-        
-        redireciona("/index");
-    
+    public String autenticar() {
+        UsuarioDAO usrDAO = new UsuarioDAO();
+
+        //System.out.println("usuario = " + usuario.getLogin() + "senha = " + usuario.getPwd());
+        if (usrDAO.autenticarUsuario(usuario.getLogin(), usuario.getPwd())) {
+            SessionContext.getInstance().setAttribute("usuarioLogado", usuario);
+            redireciona("/SIJUD/index.xhtml");
+            FacesUtil.addMsgInfo("Autenticado com sucesso!");
+        } else {
+            FacesUtil.addMsgError("Email/Usuário ou Senha incorretos!");
+        }
+        return null;
     }
-    
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -48,9 +54,9 @@ public class AutenticacaoBean {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    public void redireciona(String url){
-    RedirecionaPages.redirectToPage(url);
+
+    public void redireciona(String url) {
+        RedirecionaPages.redirectToPage(url);
     }
-    
+
 }
