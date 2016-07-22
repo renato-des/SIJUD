@@ -7,44 +7,47 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "tb_pessoa")
-public class Pessoa extends GenericModel {
-	@Column(length = 200, nullable = false)
-	private String firstName;
-	@Column(length = 200, nullable = false)
-	private String lastName;
-	
-	@Column(length = 18)
-	private String cpf;
-	
-	@Column(length = 18)
-	private String rg;
-	
-	@Column(length = 200)
-	private String rua;
-	
-	@Column()
-	private Short numero;
-	
-	@Column(length = 150)
-	private String bairro;
-	
-	@Column(length = 15)
-	private String cep;
-	
-	@Column(length = 50)
-	private String complemento;
-	
-	@Column(length = 20)
-	private String telefone;
+public class Pessoa extends GenericID {
 
-	@Column(length = 20)
-	private String celular;
-	
-	@Column(length = 150)
-	private String email;
-        
-        //private Cidade cidade;
+    @Column(length = 200, nullable = false)
+    private String firstName;
+    @Column(length = 200, nullable = false)
+    private String lastName;
 
+    @Column(length = 18)
+    private String cpf;
+
+    @Column(length = 18)
+    private String rg;
+
+    @Column(length = 200)
+    private String rua;
+
+    @Column()
+    private Short numero;
+
+    @Column(length = 150)
+    private String bairro;
+
+    @Column(length = 15)
+    private String cep;
+
+    @Column(length = 50)
+    private String complemento;
+
+    @Column(length = 20)
+    private String telefone;
+
+    @Column(length = 20)
+    private String celular;
+
+    @Column(length = 150)
+    private String email;
+
+    public Pessoa() {
+    }
+
+    //private Cidade cidade;
     public String getFirstName() {
         return firstName;
     }
@@ -52,6 +55,7 @@ public class Pessoa extends GenericModel {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }

@@ -29,5 +29,5 @@ public class RedirecionaPages {
             throw new FacesException(e);
         }
     }
-
+    
 }

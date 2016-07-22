@@ -2,15 +2,21 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <!-- Database connection settings -->
+    <!--     Database connection settings 
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sijud</property>
+    <property name="hibernate.connection.username">sijud</property>
+    <property name="hibernate.connection.password">sijud</property>-->
+    <!-- Database connection settings -->
+    <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+    <property name="hibernate.connection.url">jdbc:derby://localhost:1527/SIJUD</property>
     <property name="hibernate.connection.username">sijud</property>
     <property name="hibernate.connection.password">sijud</property>
     <!-- JDBC connection pool (use the built-in) -->
     <property name="connection.pool_size">1</property>
     <!-- SQL dialect -->
-    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    <!--    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>-->
+    <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
     <!-- Enable Hibernate's automatic session context management -->
     <property name="current_session_context_class">thread</property>
     <!-- Disable the second-level cache  -->
@@ -20,8 +26,12 @@
     <!-- Drop and re-create the database schema on startup -->
     <property name="hibernate.hbm2ddl.auto">update</property>
     <!-- Classes mapeadas -->
+    <mapping class="br.com.sijud.model.Cidade"/>
     <mapping class="br.com.sijud.model.Demanda"/>
+    <mapping class="br.com.sijud.model.Estado"/>
     <mapping class="br.com.sijud.model.Pessoa"/>
+    <mapping class="br.com.sijud.model.Pais"/>
+    <mapping class="br.com.sijud.model.Regiao"/>
     <mapping class="br.com.sijud.model.Usuario"/>
   </session-factory>
 </hibernate-configuration>

@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "tb_demanda")
 @SuppressWarnings("serial")
-public class Demanda extends GenericModel {
+public class Demanda extends GenericID {
 
     @Basic(optional = false)
     @NotNull

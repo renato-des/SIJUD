@@ -22,9 +22,9 @@ import javax.validation.constraints.Size;
  * @author renat_dvxxuhs
  */
 @Entity
-@Table(name = "tb_login")
+@Table(name = "tb_usuario")
 @SuppressWarnings("serial")
-public class Usuario extends GenericModel {
+public class Usuario extends GenericID {
 
     @OneToOne
     @JoinColumn(nullable = false)

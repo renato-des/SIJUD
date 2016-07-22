@@ -16,7 +16,7 @@
             <div id="signupbox" style="" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <div class="panel-title">Cadastrar</div>
+                        <div class="panel-title">Cadastrar Usuário</div>
                         <div style="float:right; font-size: 85%; position: relative; top:-10px">
                             <a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Logar-se</a>
                         </div>
@@ -25,67 +25,36 @@
 
                         <h:form id="signupform" class="form-horizontal">
                             <h:messages id="messages" />
-                            <div class="form-group">
-                                <h:outputLabel for="user" value="Email" styleClass="col-md-3 control-label" />
-                                <div class="col-md-9">
-                                    <h:inputText id="user" value="#{usuarioBean.usuario.login}" styleClass="form-control" pt:placeHolder="Email" pt:autoFocus="true" pt:required="true"/>
+                            <div id="cad-login">
+                                <div class="form-group">
+                                    <h:outputLabel for="user" value="Email" styleClass="col-md-3 control-label" />
+                                    <div class="col-md-9">
+                                        <h:inputText id="user" value="#{usuarioBean.usuario.login}" styleClass="form-control" pt:placeHolder="Email" pt:autoFocus="true" pt:required="true"/>
+                                    </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="senha" value="Senha" styleClass="col-md-3 control-label" />
+                                    <div class="col-md-9">
+                                        <h:inputSecret id="pwd" value="#{usuarioBean.usuario.pwd}" styleClass="form-control"  pt:placeHolder="Senha" pt:required="true" />                    
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel for="retype-pwd" value="Redigite a Senha" styleClass="col-md-3 control-label" />
+                                    <div class="col-md-9">
+                                        <h:inputSecret id="retype-pwd" value="123" styleClass="form-control"  pt:placeHolder="Redigite a Senha" pt:required="true" />                    
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- Button id="btn-signup"-->
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <h:commandButton  styleClass="btn btn-info" value="Cadastrar" action="#{usuarioBean.salvarUsuario}" >
+                                        </h:commandButton>
+                                    </div>
+                                </div>  
                             </div>
-                            <div class="form-group">                        
-                                <h:outputLabel for="nome" value="Primeiro Nome" styleClass="col-md-3 control-label" />
-                                <div class="col-md-9">
-                                    <h:inputText id="firstName" value="#{usuarioBean.pessoa.firstName}" styleClass="form-control"  pt:placeHolder="Primeiro Nome" pt:required="true"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h:outputLabel for="Ultimo Nome" value="Último nome" styleClass="col-md-3 control-label" />                    
-                                <div class="col-md-9">
-                                    <h:inputText id="lastName" value="#{usuarioBean.pessoa.lastName}" styleClass="form-control"  pt:placeHolder="Último nome" pt:required="true" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h:outputLabel for="senha" value="Senha" styleClass="col-md-3 control-label" />
-                                <div class="col-md-9">
-                                    <h:inputSecret id="pwd" value="#{usuarioBean.usuario.pwd}" styleClass="form-control"  pt:placeHolder="Senha" pt:required="true" />                    
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h:outputLabel for="cpf" value="CPF" styleClass="col-md-3 control-label cpf" />
-                                <div class="col-md-9">
-                                    
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h:outputLabel for="rg" value="RG" styleClass="col-md-3 control-label rg" />
-                                <div class="col-md-9">
-                                    
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h:outputLabel for="usuario" value="Usuário" styleClass="col-md-3 control-label" />
-                                <div class="col-md-9">
-                                    
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h:outputLabel for="usuario" value="Usuário" styleClass="col-md-3 control-label" />
-                                <div class="col-md-9">
-                                    
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h:outputLabel for="usuario" value="Usuário" styleClass="col-md-3 control-label" />
-                                <div class="col-md-9">
-                                    
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <!-- Button id="btn-signup"-->
-                                <div class="col-md-offset-3 col-md-9">
-                                    <h:commandButton  styleClass="btn btn-info" value="Cadastrar" action="#{usuarioBean.salvarUsuario}" >
-                                    </h:commandButton>
-                                </div>
-                            </div>   
+
                         </h:form>
 
 

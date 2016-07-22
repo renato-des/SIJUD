@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 
 @SuppressWarnings("serial")
 @MappedSuperclass
-public class GenericModel implements Serializable {
+public class GenericID implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
