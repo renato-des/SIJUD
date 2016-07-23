@@ -36,11 +36,14 @@ public class AutenticacaoBean implements Serializable {
     public String autenticar() {
         UsuarioDAO usrDAO = new UsuarioDAO();
 
-        //System.out.println("usuario = " + usuario.getLogin() + "senha = " + usuario.getPwd());
-        if (usrDAO.autenticarUsuario(usuario.getLogin(), usuario.getPwd())) {
+        if (usrDAO.autenticarUsuario(usuario.getLogin(), usuario.getPwd()) != null) {
+            //Usuario usuarioLogado = new Usuario();
+            usuario = usrDAO.buscarPorCampo("login", usuario.getLogin());
+
             SessionContext.getInstance().setAttribute("usuarioLogado", usuario);
-            redireciona("/SIJUD/index.xhtml");
+            SessionContext.getInstance().setAttribute("papel", usuario.getPapel());
             FacesUtil.addMsgInfo("Autenticado com sucesso!");
+            return "/SIJUD/index.xhtml?faces-redirect=true";
         } else {
             FacesUtil.addMsgError("Email/Usuário ou Senha incorretos!");
         }
@@ -57,6 +60,10 @@ public class AutenticacaoBean implements Serializable {
 
     public void redireciona(String url) {
         RedirecionaPages.redirectToPage(url);
+    }
+
+    public String fowardPage(String url) {
+        return url;
     }
 
 }
