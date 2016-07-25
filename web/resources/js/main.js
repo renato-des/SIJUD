@@ -6,5 +6,5 @@ jQuery(function ($) {
     $('.telefone').mask('(99) 9999-9999');
     $('.celular').mask('(99) 9.9999-9999');
     $('.nrprocesso').mask('9999999.99.9999.999.9999');
-    $('.nroficio').mask('9999999999999/9999');
+    $('.nroficio').mask('9/9999');
 });

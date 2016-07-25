@@ -41,6 +41,22 @@ public class Usuario extends GenericID {
     @Column(name = "login")
     private String login;
 
+    @NotNull
+    @Column(name = "papel")
+    private Papel papel;
+
+    public boolean isAdm() {
+        return Papel.ADM.equals(papel);
+    }
+
+    public boolean isGerente() {
+        return Papel.GERENTE.equals(papel);
+    }
+
+    public boolean isUsuarioSimples() {
+        return Papel.USUARIO_SIMPLES.equals(papel);
+    }
+
     public Date getUltimoAcesso() {
         return ultimoAcesso;
     }
@@ -50,7 +66,7 @@ public class Usuario extends GenericID {
     }
 
     @Column(name = "lastAccess", unique = true)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date ultimoAcesso;
 
     @Column(name = "active", nullable = false, columnDefinition = "Boolean default true")
@@ -89,6 +105,14 @@ public class Usuario extends GenericID {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public Papel getPapel() {
+        return papel;
+    }
+
+    public void setPapel(Papel papel) {
+        this.papel = papel;
     }
 
 }

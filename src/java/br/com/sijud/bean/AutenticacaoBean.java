@@ -6,15 +6,19 @@
 package br.com.sijud.bean;
 
 import br.com.sijud.dao.UsuarioDAO;
+import br.com.sijud.model.Papel;
 import br.com.sijud.model.Pessoa;
 import br.com.sijud.model.Usuario;
 import br.com.sijud.util.FacesUtil;
 import br.com.sijud.util.RedirecionaPages;
 import br.com.sijud.util.SessionContext;
 import java.io.Serializable;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -22,8 +26,11 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
+@SuppressWarnings("serial")
 public class AutenticacaoBean implements Serializable {
 
+    private static final Logger logger = LogManager.getLogger(AutenticacaoBean.class);
+    
     private Usuario usuario;
 
     @PostConstruct
@@ -35,21 +42,22 @@ public class AutenticacaoBean implements Serializable {
 
     public String autenticar() {
         UsuarioDAO usrDAO = new UsuarioDAO();
-
-        if (usrDAO.autenticarUsuario(usuario.getLogin(), usuario.getPwd()) != null) {
-            //Usuario usuarioLogado = new Usuario();
-            usuario = usrDAO.buscarPorCampo("login", usuario.getLogin());
-
-            SessionContext.getInstance().setAttribute("usuarioLogado", usuario);
-            SessionContext.getInstance().setAttribute("papel", usuario.getPapel());
+        usuario = usrDAO.autenticarUsuario(usuario.getLogin(), usuario.getPwd());
+        if (usuario != null) {
+            UsuarioLogado usuarioLogado = new UsuarioLogado(usuario.getPapel(), usuario.getPessoa().getFirstName() + " " + usuario.getPessoa().getLastName(), Boolean.TRUE,usuario.getUltimoAcesso());
+        usuario.setUltimoAcesso(new Date());
+            usrDAO.updateUltimoAcesso(usuario);
+            SessionContext.getInstance().setAttribute("usuarioLogado", usuarioLogado);
             FacesUtil.addMsgInfo("Autenticado com sucesso!");
-            return "/SIJUD/index.xhtml?faces-redirect=true";
+            redireciona("/SIJUD/index.xhtml");
         } else {
             FacesUtil.addMsgError("Email/Usuário ou Senha incorretos!");
         }
         return null;
     }
 
+    
+    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -66,4 +74,51 @@ public class AutenticacaoBean implements Serializable {
         return url;
     }
 
+    public static class UsuarioLogado implements Serializable {
+
+        private Papel papel = Papel.USUARIO_SIMPLES;
+        private String nome = "";
+        private Boolean logado = false;
+        private Date ultimoAcesso;
+
+        public UsuarioLogado(Papel papel, String nome, Boolean logado,Date ultimoAcesso) {
+            this.logado = logado;
+            this.nome = nome;
+            this.papel = papel;
+            this.ultimoAcesso = ultimoAcesso;
+        }
+
+        public Papel getPapel() {
+            return papel;
+        }
+
+        public void setPapel(Papel papel) {
+            this.papel = papel;
+        }
+
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        public Boolean getLogado() {
+            return logado;
+        }
+
+        public void setLogado(Boolean logado) {
+            this.logado = logado;
+        }
+
+        public Date getUltimoAcesso() {
+            return ultimoAcesso;
+        }
+
+        public void setUltimoAcesso(Date ultimoAcesso) {
+            this.ultimoAcesso = ultimoAcesso;
+        }
+
+    }
 }

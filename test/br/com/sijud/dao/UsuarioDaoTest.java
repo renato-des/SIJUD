@@ -5,9 +5,11 @@
  */
 package br.com.sijud.dao;
 
+import br.com.sijud.model.Papel;
 import br.com.sijud.model.Pessoa;
 import br.com.sijud.model.Usuario;
 import br.com.sijud.util.HibernateUtil;
+import java.util.Date;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,6 +26,21 @@ public class UsuarioDaoTest {
     private static final Logger logger = LogManager.getLogger(UsuarioDaoTest.class);
 
     @Test
+    @Ignore
+    public void testUpdateUltimoAcesso() {
+        Usuario usuario = new Usuario();
+        usuario.setLogin("renatotpvieira@gmail.com");
+        usuario.setPwd("32776385");
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        usuario = usuarioDAO.autenticarUsuario(usuario.getLogin(), usuario.getPwd());
+        usuario.setUltimoAcesso(new Date());
+        logger.info("Ultimo Acesso " + usuario.getUltimoAcesso());
+        usuarioDAO.updateUltimoAcesso(usuario);
+    }
+
+    @Test
+    @Ignore
     public void testAutenticarUsuario() {
         Pessoa pessoa = new Pessoa();
         pessoa.setEmail("renatotpvieira@gmail.com");
@@ -33,12 +50,19 @@ public class UsuarioDaoTest {
         Usuario usuario = new Usuario();
         usuario.setPessoa(pessoa);
         usuario.setLogin("renatotpvieira@gmail.com");
-        usuario.setPwd("327763851");
+        usuario.setPwd("32776385");
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usrLogado = usuarioDAO.autenticarUsuario(usuario.getLogin(), usuario.getPwd());
+        usrLogado.setPapel(Papel.GERENTE);
 
-        if (usuarioDAO.autenticarUsuario(usuario.getLogin(), usuario.getPwd())) {
+        if (usrLogado != null) {
             //System.out.println("Autenticado");
+            logger.info("Ele é Papel - " + usrLogado.getPapel());
+            logger.info("Ele é Valor Papel - " + usrLogado.getPapel().getValorPapel());
+            logger.info("Ele é ADM - " + usrLogado.isAdm());
+            logger.info("Ele é GERENTE - " + usrLogado.isGerente());
+            logger.info("Ele é USUARIO_SIMPLES - " + usrLogado.isUsuarioSimples());
             logger.info("Logger Autenticado");
         } else {
             //System.out.println("Não Autenticado");
@@ -91,7 +115,7 @@ public class UsuarioDaoTest {
     }
 
     @Test
-    @Ignore
+//    @Ignore
     public void PessoaUsuarioTest() {
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         sessao.close();

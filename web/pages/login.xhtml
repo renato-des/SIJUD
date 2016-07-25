@@ -10,7 +10,7 @@
                  template="/template/layout.xhtml">
 
     <ui:define name="content">
-        <div class="container">
+        <div class="container" jsf:rendered="#{session.getAttribute('usuarioLogado')==null}">
 
             <div id="loginbox" style="" class="mainbox col-md-4 col-md-offset-3 col-sm-8 col-sm-offset-2">
                 <div class="panel panel-info">
@@ -54,7 +54,7 @@
                                         Novo usuário!
                                         <!--                                            <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Clique aqui para cadastrar-se</a>-->
                                         <!--                                            <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Clique aqui para cadastrar-se</a>-->
-                                        <h:commandLink value="Clique aqui para cadastrar-se" actionListener="#{autenticacaoBean.redireciona('/pages/cad-user')}" />
+                                        <h:commandLink value="Clique aqui para cadastrar-se" action="#{autenticacaoBean.fowardPage('cad-user')}" />
 
                                     </div>
                                 </div>
