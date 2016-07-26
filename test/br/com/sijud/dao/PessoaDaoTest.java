@@ -28,7 +28,7 @@ public class PessoaDaoTest {
         pessoa.setEmail("renato.vieira@gmail.com");
         pessoa.setCpf("16204283855");
 
-        PessoaDao pessoaDao = new PessoaDao();
+        PessoaDAO pessoaDao = new PessoaDAO();
         pessoaDao.salvar(pessoa);
 
     }
@@ -39,7 +39,7 @@ public class PessoaDaoTest {
         String email = "renatotpvieira@gmail.com1";
         Pessoa pessoa = new Pessoa();
         //pessoa.setEmail("renatotpvieira@gmail.com");
-        PessoaDao pessoaDao = new PessoaDao();
+        PessoaDAO pessoaDao = new PessoaDAO();
         pessoa = pessoaDao.buscarPorCampo("email", email);
         
         logger.debug("Pessoa - " + pessoa);
