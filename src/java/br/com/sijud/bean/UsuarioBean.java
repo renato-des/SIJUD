@@ -5,7 +5,7 @@
  */
 package br.com.sijud.bean;
 
-import br.com.sijud.dao.PessoaDao;
+import br.com.sijud.dao.PessoaDAO;
 import br.com.sijud.dao.UsuarioDAO;
 import br.com.sijud.model.Pessoa;
 import br.com.sijud.model.Usuario;
@@ -84,7 +84,7 @@ public class UsuarioBean implements Serializable {
 //            implementar mensagem
 
         } else {
-            PessoaDao pDao = new PessoaDao();
+            PessoaDAO pDao = new PessoaDAO();
             if (pDao.existPorCampo("email", usuario.getLogin())) {
                 pessoa = pDao.buscarPorCampo("email", usuario.getLogin());
                 usuario.setActive(false);
